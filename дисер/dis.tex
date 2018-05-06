@@ -1,4 +1,4 @@
-\documentclass[12pt,a4paper]{article}
+\documentclass[a4paper]{article}
 \usepackage[utf8]{inputenc}
 \usepackage[russian]{babel}
 \usepackage{amsmath}
@@ -8,7 +8,10 @@
 \usepackage{grffile}
 \usepackage{subcaption}
 \usepackage{float}
+\usepackage[14pt]{extsizes}
 \usepackage[left=2.00cm, right=2.00cm, top=2.00cm, bottom=2.00cm]{geometry}
+\usepackage{setspace}
+\onehalfspacing
 \begin{document}
 
 	
@@ -163,8 +166,8 @@
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width=0.5\linewidth]{HKpic2.png}
-		\label{hkpic}
 		\caption{Принцип алогритма HK76. Зеленые стрелки показывают, на каких соседей смотрит текущий агент. Красная стрелка показывает ситуацию слияния одного кластера в другой}
+		\label{hkpic}
 	\end{figure}
 	
 	
@@ -196,10 +199,10 @@
 	\par Теперь перейдем непосредственно к объяснению, что же такое граница. Проведем связи между крайними элементами протекающего кластера к соседям, имеющих другую стратегию. Элемент называется крайним, если по горизонтали или по вертикали среди его соседей найдется хотя бы один агент, имеющий другую стратегию. Теперь вернемся к дуальной решетке и проведем перпендикулярно этим связям линию, соединяющую узлы дуальной решетки. Совокупность этих линий является границей или интерфейсом протекающего кластера\cite{zatelep}. На Рис.\ref{bord} изображен пример как выглядит граница протекающего кластера из дефекторов.
 	
 	\begin{figure}
-		\label{bord}
 		\centering
 		\includegraphics[width=0.7\linewidth]{border2.png}
 		\caption{Пример границы протекающего кластера из дефекторов}
+		\label{bord}		
 	\end{figure}
 
 	\par Численная величина границы - это количество линий, проведенных перпендикулярно связям между элементами протекающего кластера и агентами другого типа. Количество линий - это фактически число связей, через которые они были проведены, а это равно количеству соседей, имеющих другую стратегию. Таким образом алгоритм вычисления границы заключается в следующем. Идем построчно начиная с верхнего левого элемента решетки. Проверяем, принадлежит ли он протекающему кластеру. Если да, то считаем количество его соседей по вертикали и горизонтали, которые имеют другую стратегию, затем переходим к другому элементу. 
@@ -217,20 +220,23 @@
 	\par Одной из целей параллельного программирования является распределение однотипных инструкций процессору между нитями. Засчет этого и получается ускорение. Следуя этому принципу, мы распараллелили модель эволюционной игры. Мы распределили между нитями каждую строку решетки, как показано на Рис.\ref{parall} и получили соответствующий прирост в скорости выполнения программы. На Рис. показано время работы последовательного кода и варианта с использованием технологии OpenMP.
 	
 	\begin{figure}
-		\label{time}
 		\centering
 		\includegraphics[width=0.7\linewidth]{time.png}
 		\caption{Время выполнения последовательного и параллельного алгоритма в сек. По вертикали - время выполнения в сек. По горизонтали - размеры решетки.}
+		\label{time}		
 	\end{figure}
 	
 	\begin{figure}[H]
-		\label{parall}
 		\centering
 		\includegraphics[width=0.7\linewidth]{rule.png}
-		\caption{Иллюстрация параллельного алгоритма и количества игроков, участвующих в определении стратегии.}
+		\caption{Иллюстрация параллельного алгоритма и количества игроков, участвующих в
+			 определении стратегии.}
+		\label{parall}		
 	\end{figure}
 	
 	\section{Вычисления}
+	
+	\subsection{Простая детерминистическая модель}
 	
 	\par Исследуя пространственную эволюционную Дилемму Узника Р. Мэя и М. Новака, удалось выявить, что конфигурация агентов на решетке резко меняется при переходе через значение $b = 9/5$. При $b<9/5$ структура кооператоров относительно статична, а при $b>9/5$ наоборот можно наблюдать разнообразную динамику на решетке - рост, передвижение и столкновение.
 	
@@ -260,11 +266,11 @@
 			\caption{$b=1.8001$}
 			\label{grid_right}			
 		\end{subfigure}%
-		\caption{Снимки решеток игры м 100х100 вблизи точки фазового перехода $b=9/5$}
+		\caption{Снимки решеток игры 100х100 вблизи точки фазового перехода $b=9/5$}
 		\label{fig_exmpl}
 	\end{figure}
 		
-	\par На Рис.\ref{fig_exmpl} представлены примеры плотности кооператоров на решетке, а также самих решеток слева и справа от точки $b=9/5$. Слева от точки наблюдается квазистационарный режим Рис. \ref{fig_exmpl}\ref{grid_left} - это следует из графика плотности кооператоров на решетке выше Рис. \ref{fig_exmpl}\ref{freq_left}. Ситуация с другой стороны иная. На решетке преобладают дефекторы \ref{fig_exmpl}\ref{grid_right} и, исходя из графика Рис.\ref{fig_exmpl}\ref{freq_left}, отсутствует какой-либо режим.
+	\par На Рис.\ref{fig_exmpl} представлены примеры плотности кооператоров на решетке, а также самих решеток слева и справа от точки $b=9/5$. Слева от точки наблюдается квазистационарный режим Рис.\ref{grid_left} - это следует из графика плотности кооператоров на решетке выше Рис.\ref{freq_left}. Ситуация с другой стороны иная. На решетке преобладают дефекторы Рис.\ref{grid_right} и, исходя из графика Рис.\ref{freq_left}, отсутствует какой-либо режим.
 		
 	\par Для наглядного представления, как меняется динамика игры с изменением параметра $b$, было взято 25 независимых реализаций начального заполнения и вычислена средняя плотность кооператоров по времени, без учета первых $10^{3}$ игр для уравновешивания и усреднения по $2 x 10^{4}$ раундов. На Рис. показан график изменения плотности кооператоров от параметра $b=T/S$, на котором отчетливо виден резкий переход в точке $b=9/5$, при котором плотность кооператоров падает с $~70\% $ до $~30\%$
 	
@@ -278,14 +284,30 @@
 	
 	\par Так же можно заметить одну особенность. Не только плотность изменяется при  переходе через особую точку, также распространение мелких структур резко увеличивается. Но несмотря на это, оно имеет конечный размер, уменьшающий с ростом размера всей решетки. Второй факт заключается в том, что средняя плотность кооператоров на решетке при $b>9/5$ удовлетворяет значению $ f_{C} = 12log2-8 \approx 0.32$.
 	
+	\begin{figure}
+			\begin{subfigure}{.6\textwidth}
+			\includegraphics[width=.8\linewidth]{old_edge.png}
+			\caption{$b=1.7999$}
+		\end{subfigure}
+		\caption{График приближения длины границы протекающего кластера вблизи точки $b=9/5$}
+		\label{old_edge}
+	\end{figure}
+		
+	\par Кроме того, мы замерили как изменяется длина интерфейса протекающего кластера и приблизили это степенной функцией \ref{power_law}
+	\begin{equation}
+		I = AL^{\theta} +c
+		\label{power_law}
+	\end{equation}
+	
+	\par Замер был проведен слева и справа в от точки фазового перехода Рис. \ref{old_edge}. Слева коэффициенты закона принимаются следующие значения. Для $b=1.7999$ $A=0.3622(1)$,
+	$c=-10.1(1)$ и $\theta=	2.0124(3)$. Справа от точки перехода коэффициенты следующие
+	$b=1.8001$, $c= $ и $\theta= $.
+	
 	
 	\subsection{Простая модель со случайным полем}
 	
-	\par Моделируется пространственная эволюционная игра на основе модели
-	Дилеммы Узника, помещенная на квадратную решетку с периодическими граничными
-	условиями, в узлах которой находятся игроки одного из двух типов - кооператор 
-	или дефектор. Каждый игрок получает доход, играя со своими 8 соседями и со средним полем. Среднее поле определяется следующим образом - вычисляется доля кооператоров на решетке в данный момент времени, генерируется число в интервале от 0 до 1 и сравнивается с долей кооператоров. Если оно оказалось больше, то девятый игрок - дефектор, если меньше - кооператор. В следующем раунде игрок выберет стратегию соседа с максимальным доходом. Случайный игрок окажется кооператором с вероятностью
-	равной плотности кооператоров на решетке в данный момент времени. Решетка 
+	\par Внесем некоторые изменения в текущую модель. Основные характеристики модели
+	оставим без изменений, но поменяем условие игры. Каждый игрок получает доход, играя со своими 8 соседями и со средним полем. Среднее поле определяется следующим образом - вычисляется доля кооператоров на решетке в данный момент времени, генерируется число в интервале от 0 до 1 и сравнивается с долей кооператоров. Если оно оказалось больше, то девятый игрок - дефектор, если меньше - кооператор. В следующем раунде игрок выберет стратегию соседа с максимальным доходом. Случайный игрок окажется кооператором с вероятностью равной плотности кооператоров на решетке в данный момент времени. Решетка 
 	обновляется, когда каждый игрок определил свой тип в следующем раунде.
 	
 	\par Ниже в приведены формулы, по которым рассчитываются доходы кооператора ($P_{c}$) и дефектора ($P_{D}$)
@@ -334,7 +356,7 @@
 	\end{figure}
 
 		
-	В приложении находятся графики зависимости плотности кооператоров на решетке 
+	В Приложении 1 находятся графики зависимости плотности кооператоров на решетке 
 	от времени при различных значениях параметра $b$. Зеленым цветом показано поведение
 	модели Р.Мэй и М.Новака. Синим - модель со случайным игроком. Начальное заполнение решетки 90$\%$ игра длится 21000 поколений. Можно заметить, что сначала присутствует резкое падение вниз плотности кооператоров, а затем с определенного момента изменение 
 	стабилизируется, причём для каждого параметра $b$ время релаксации является различным.
@@ -385,16 +407,87 @@
 
 	\par Следующий этап - подсчет средней плотности. Для этого запускается 25 реплик игры с количеством поколений выбранным так, чтобы в каждой реплике было 20000 поколений, начиная с времени релаксации, соответствующему параметру $b$. В итоге получается усреднение по 500000 поколениям. 
 	
-	\begin{figure}
+	\begin{figure}[H]
 			\centering
 			\includegraphics[width=0.7\linewidth]{../compare_av/AVERAGE}
-			\caption{График зависимости плотности кооператоров от $b$. Зеленые кружки - модель Р.Мэй и М.Новака, синие треугольники - модель со случайным игроком}
+			\caption{График зависимости плотности кооператоров от $b$. Зеленые кружки - модель Р.Мэй и М.Новака, синие треугольники - модель со средним полем}
 			\label{average}
 	\end{figure}
+	
+	\par В данной модели точке $b=9/5$ предыдущей модели соответствует $b=3/2$. Справа от нее растет единичный дефектор и 3х3 блок из кооператоров, а также отсутствуют протекающие кластеры кооператоров. Кроме того, приближение степенной функцией (\ref{power_law}) также дало степень аналогичную из предыдущей модели. Таким образом и в этой модели граница протекающего кластера растет квадратично из ростом размера системы. Слева коэффициенты закона принимаются следующие значения. Для $b=1.4999$ $A=0.2847(2)$,
+	$c=30(1)$ и $\theta=2.025(1)$. Справа от точки перехода коэффициенты следующие
+	$b=1.5001$, $c= $ и $\theta= $.
+	
+	
+	\subsection{Модель с чужим средним полем}
+	
+	\par Рассмотрим модель из предыдущего пункта. В котором каждый агент играл со средним полем текущей решетки. Мы внесли некоторые изменение и в эту модель. Запускаются одновременно две игры соответствующие модели игры со средним полем(см. предыдущий пункт). Изменение заключается в том, что каждый агент среди его оппонентов, помимо восьмерых его соседей он должен сиграть со средним полем другой решетки, которая запускалась вместе с первой, а на другой решетке - соответственно со средним полем первой. Графики плотностей кооператоров находятся в Приложении 4. Количество раундов для релаксации системы, которые не учитываются в вычислениях указаны в таблице ниже.
+	
+	В Приложении 2 можно найти графики плотностей кооператоров на решетке от времени при различных значениях параметра $b$. Размер решетки 100х100. Всего количество раундов составляет 36000.
 	
 	В Приложение 3 находится таблица значений величин изображенных на Рис. \ref{average}. На графике можно заметить, что практически все точки, в которых происходит скачек средней плотности совпадают в обеих моделях. Но в модели со случайным игроком есть точка перехода $b=1.66$, после которой кооператоры вымирают полностью, не совпадет с другой моделью. Аналогичной точкой в модели Р.Мэй и М.Новака является $b=3$
 	
 
+ \begin{thebibliography}{99}
+	
+	\bibitem{shram}  O. Schramm,
+	\textit{Scaling limits of loop-erased random walks and uniform spanning trees}, Isr. J. Math. 118, 221 (2000).
+	
+	\bibitem{cft}  A. A. Belavin, A. M. Polyakov, and A. B. Zamolodchikov, \textit{Infinite conformal symmetry in two-dimensional quantum field theory}, Nucl. Phys. B241 333 (1984).
+	
+	\bibitem{stat_model}  R.J. Baxter, Exactly solvable models in statistical mechanics, Academic Press, London, 1982.
+	
+	\bibitem{conf_algeb}  Vl.S. Dotsenko, V.A. Fateev, Conformal algebra and multipoint correlation functions in 2D statistical models, Nucl. Phys. B240 (FS12), 312 (1984).
+	
+	\bibitem{harm_expl}  O. Schramm and S. Sheffield, Harmonic Explorer and Its Convergence to SLE 4, The Annals of Probability 33, 2127 (2005).
+	
+	\bibitem{crit_perc}  S. Smirnov, Critical percolation in the plane:  conformal invariance, Cardy's formula, scaling limits, Comptes Rendus de l'Academie des Sciences 333, 239 (2001).
+	
+	\bibitem{conf_inv}  S. Smirnov, Conformal  invariance  in  random  cluster  models.  I.  Holomorphic  fermions  in  the  Ising  model, Ann. Math., 172, 1435 (2010).
+	
+	\bibitem{microvawe}  Y.H.  Jung,  H.  Zhang,  S.J.  Cho,  Z.  Ma, Flexible  and  Stretchable  Microwave  Microelectronic  Devices  and Circuits, IEEE Trans. Elrctr. Dev. 64, 1881 (2017).
+	
+	\bibitem{looperased}G. Lawler. O. Schramm, and W. Werner. Conformal invariance of planar loop-erased random walks and uniform spanning trees, Ann. Probab.,32:939–995, 2004.
+	
+	\bibitem{critexplor}F. Camia, C. Newman. Critical Percolation Exploration Path and SLE(6): a Proof of Convergence.Probab. Theory Rel.,139:473-520, 2007.
+	
+	\bibitem{zatelep}  A. Zatelepin and L. Shchur, Duality of critical interfaces in Potts model:  numerical check, arXiv :1008.3573.
+	
+	\bibitem{lowner} K. Lowner, Untersuchungen uber schlichte konforme Abbildungen des Einheits-kreises. I, Math.Ann., 89:1–2 (1923), 103–121.
+	
+	\bibitem{chordal}L. V. Ahlfors. Conformal invariants: topics in geometric function theory. McGraw-Hill Book Co., New York, 1973.
+	
+	\bibitem{radial}G. Lawler and S. Sheffield. A natural parametrization for the Schramm-Loewner evolution.Ann. Probab.,39,:1896-1937, 2011.
+	
+	\bibitem{may_nowak92}  M.A. Nowak and R.M. May, Evolutionary games and spatial chaos, Nature 359, 826 (1992).
+	
+	\bibitem{nowak06}  M.A. Nowak, Evolutionary Dynamics:  Exploring the equations of life, The Belknap Press, (2006).
+	
+	\bibitem{may_nowak93}  M.A. Nowak and R.M. May, The spatial dilemmas of evolution, Int. J. Birurcation and Chaos 3, 35 (1993).
+	
+	\bibitem{phase_trans}  H.E. Stanley, Introduction to phase transition and critical phenomena, Oxford University Press 1971.
+	
+	\bibitem{finite_size}  M.N. Barber, Finite size scaling,in Phase transitions and critical phenomena, Eds. C. Domb and J Lebowitz, volume 8 (1983).
+	
+	\bibitem{first_order}  K. Binder, Theory of first-order phase transitions, Rep. Prog. Phys. 50, 783 (1987).
+	
+	\bibitem{mixed_order}  A. Bar and D. Mukamel, Mixed-Order Phase Transition in a One-Dimensional Model, Phys. Rev. Lett. 112, 015701 (2014).
+	
+	\bibitem{boostrap}  J. Adler, Bootstrap percolation, Physica A 171, 453 (1991).
+	
+	\bibitem{discont_perc}  H. Herrmann, Discontinuous percolation, J. of Phys:  Conf. Series 681, 012003 (2015).
+	
+	\bibitem{game_theory}  see, e.g. , S. Tadelis, Game Theory:  An Introduction, Princeton University Press, 2013, and references therein.
+	
+	\bibitem{Mor} Singer-Clark T., Morality Metrics On Iterated Prisoners Dilemma Players // URL: http://www.scottaaronson.com/morality.pdf
+	
+	\bibitem{hk76}  J.  Hoshen,  R.  Kopelman, Percolation  and  cluster  distribution.  I.  Cluster  multiple  labeling  technique  and critical concentration algorithm, Phys. Rev. B. 14, 8 (1976).
+	
+	\bibitem{OpenMP}  OpenMP Specifications // URL: http://openmp.org/wp/openmp-specifications/
+	
+	\bibitem{hausdorf}  M.  Shishikura, The  Hausdorff  dimension  of  the  boundary  of  the  Mandelbrot  set  and  Julia  sets,  Annals  of Mathematics 147, 225 (1998).
+	
+\end{thebibliography}
 
 	\section{Приложение 1}
 	\begin{figure}[H]
@@ -471,112 +564,4 @@
 	\caption{Графики}
 	\end{figure}	
 
- \section{Приложение 2}
- 
- 	\begin{center}
- 		\begin{table}[H]
- 			\centering
- 			\begin{tabular}[H]{|c|c|c|c|c|}
- 				\hline 
- 				b&$f^{Prob}_{c}$& $err_{Prob}$&$f^{MN}_{c}$& $err_{MN}$ \\
- 				\hline
- 				1.3&0.9931174116&0.00185784485341&0.8570233712&0.0143276179104 \\ 
- 				\hline 
- 				1.35&0.9754565452&0.00346478875112&0.856210325&0.0125231036421 \\ 
- 				\hline 
- 				1.39&0.9754565452&0.00346478875112&0.8830397906&0.00693414394232 \\ 
- 				\hline 
- 				1.45&0.6597172636&0.0108623201089&0.8491049608&0.00729272717975 \\ 
- 				\hline 
- 				1.5&0.509002332&0.0113359535395&0.8663578614&0.0113117064172 \\ 
- 				\hline 
- 				1.51&0.4429103238&0.0119655849564&0.8123875454&0.0140520859428 \\ 
- 				\hline 
- 				1.55&0.4429103238&0.0119655849564&0.8123875454&0.0140520859428 \\ 
- 				\hline 
- 				1.59&0.4429103238&0.0119655849564&0.8123875454&0.0140520859428 \\ 
- 				\hline 
- 				1.6&0.2961826392&0.0149808933598&0.7138630518&0.0181247181071 \\ 
- 				\hline 
- 				1.65&0.180777846&0.0153771078916&0.702671413&0.0107453568321 \\ 
- 				\hline 
- 				1.6666&0.180777846&0.0153771078916&& \\ 
- 				\hline 
- 				1.6667&0.0002228936&0.00138441836027&& \\ 
- 				\hline 
- 				1.7&2.4186e-06&0.000111590838689&0.7125603104&0.00846476171667 \\ 
- 				\hline 
- 				1.75&4.39404e-05&0.0004237380327&0.7550077526&0.00784245956098 \\ 
- 				\hline 
- 				1.8&6.2721e-05&0.000427369981922&0.4079621234&0.0151591363943 \\ 
- 				\hline 
- 				1.85&4.90412e-05&0.00039349382508&0.3156021008&0.01742878026 \\ 
- 				\hline 
- 				1.9&4.90412e-05&0.00039349382508&0.3156021008&0.01742878026 \\
- 				\hline		
- 			\end{tabular}
- 			\label{tab1}
- 			\caption{Средняя плотность кооператоров моделей со случайным игроком(Prob) и моделью Р.Мэй и М.Новак (MN) при различных параметра $b$, err - ошибка}
- 		\end{table}
- 	\end{center}
- \begin{thebibliography}{99}
- 	 	
- 	\bibitem{shram}  O. Schramm,
- 	\textit{Scaling limits of loop-erased random walks and uniform spanning trees}, Isr. J. Math. 118, 221 (2000).
- 	
- 	\bibitem{cft}  A. A. Belavin, A. M. Polyakov, and A. B. Zamolodchikov, \textit{Infinite conformal symmetry in two-dimensional quantum field theory}, Nucl. Phys. B241 333 (1984).
- 	
- 	\bibitem{stat_model}  R.J. Baxter, Exactly solvable models in statistical mechanics, Academic Press, London, 1982.
- 	
- 	\bibitem{conf_algeb}  Vl.S. Dotsenko, V.A. Fateev, Conformal algebra and multipoint correlation functions in 2D statistical models, Nucl. Phys. B240 (FS12), 312 (1984).
- 	
- 	\bibitem{harm_expl}  O. Schramm and S. Sheffield, Harmonic Explorer and Its Convergence to SLE 4, The Annals of Probability 33, 2127 (2005).
- 	
- 	\bibitem{crit_perc}  S. Smirnov, Critical percolation in the plane:  conformal invariance, Cardy's formula, scaling limits, Comptes Rendus de l'Academie des Sciences 333, 239 (2001).
- 	
- 	\bibitem{conf_inv}  S. Smirnov, Conformal  invariance  in  random  cluster  models.  I.  Holomorphic  fermions  in  the  Ising  model, Ann. Math., 172, 1435 (2010).
- 	
- 	\bibitem{microvawe}  Y.H.  Jung,  H.  Zhang,  S.J.  Cho,  Z.  Ma, Flexible  and  Stretchable  Microwave  Microelectronic  Devices  and Circuits, IEEE Trans. Elrctr. Dev. 64, 1881 (2017).
- 	
- 	\bibitem{looperased}G. Lawler. O. Schramm, and W. Werner. Conformal invariance of planar loop-erased random walks and uniform spanning trees, Ann. Probab.,32:939–995, 2004.
- 	
- 	\bibitem{critexplor}F. Camia, C. Newman. Critical Percolation Exploration Path and SLE(6): a Proof of Convergence.Probab. Theory Rel.,139:473-520, 2007.
- 	
- 	\bibitem{zatelep}  A. Zatelepin and L. Shchur, Duality of critical interfaces in Potts model:  numerical check, arXiv :1008.3573.
- 	
- 	\bibitem{lowner} K. Lowner, Untersuchungen uber schlichte konforme Abbildungen des Einheits-kreises. I, Math.Ann., 89:1–2 (1923), 103–121.
- 	
- 	\bibitem{chordal}L. V. Ahlfors. Conformal invariants: topics in geometric function theory. McGraw-Hill Book Co., New York, 1973.
- 	
- 	\bibitem{radial}G. Lawler and S. Sheffield. A natural parametrization for the Schramm-Loewner evolution.Ann. Probab.,39,:1896-1937, 2011.
- 	
- 	\bibitem{may_nowak92}  M.A. Nowak and R.M. May, Evolutionary games and spatial chaos, Nature 359, 826 (1992).
- 	
- 	\bibitem{nowak06}  M.A. Nowak, Evolutionary Dynamics:  Exploring the equations of life, The Belknap Press, (2006).
- 	
- 	\bibitem{may_nowak93}  M.A. Nowak and R.M. May, The spatial dilemmas of evolution, Int. J. Birurcation and Chaos 3, 35 (1993).
- 	
- 	\bibitem{phase_trans}  H.E. Stanley, Introduction to phase transition and critical phenomena, Oxford University Press 1971.
- 	
- 	\bibitem{finite_size}  M.N. Barber, Finite size scaling,in Phase transitions and critical phenomena, Eds. C. Domb and J Lebowitz, volume 8 (1983).
- 	
- 	\bibitem{first_order}  K. Binder, Theory of first-order phase transitions, Rep. Prog. Phys. 50, 783 (1987).
- 	
- 	\bibitem{mixed_order}  A. Bar and D. Mukamel, Mixed-Order Phase Transition in a One-Dimensional Model, Phys. Rev. Lett. 112, 015701 (2014).
- 	
- 	\bibitem{boostrap}  J. Adler, Bootstrap percolation, Physica A 171, 453 (1991).
- 	
- 	\bibitem{discont_perc}  H. Herrmann, Discontinuous percolation, J. of Phys:  Conf. Series 681, 012003 (2015).
- 	
- 	\bibitem{game_theory}  see, e.g. , S. Tadelis, Game Theory:  An Introduction, Princeton University Press, 2013, and references therein.
- 	
- 	\bibitem{Mor} Singer-Clark T., Morality Metrics On Iterated Prisoners Dilemma Players // URL: http://www.scottaaronson.com/morality.pdf
- 	
- 	\bibitem{hk76}  J.  Hoshen,  R.  Kopelman, Percolation  and  cluster  distribution.  I.  Cluster  multiple  labeling  technique  and critical concentration algorithm, Phys. Rev. B. 14, 8 (1976).
- 	
- 	\bibitem{OpenMP}  OpenMP Specifications // URL: http://openmp.org/wp/openmp-specifications/
- 	
- 	\bibitem{hausdorf}  M.  Shishikura, The  Hausdorff  dimension  of  the  boundary  of  the  Mandelbrot  set  and  Julia  sets,  Annals  of Mathematics 147, 225 (1998).
- 	
-	\end{thebibliography}
 \end{document}
