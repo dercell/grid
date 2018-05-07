@@ -285,9 +285,13 @@
 	\par Так же можно заметить одну особенность. Не только плотность изменяется при  переходе через особую точку, также распространение мелких структур резко увеличивается. Но несмотря на это, оно имеет конечный размер, уменьшающий с ростом размера всей решетки. Второй факт заключается в том, что средняя плотность кооператоров на решетке при $b>9/5$ удовлетворяет значению $ f_{C} = 12log2-8 \approx 0.32$.
 	
 	\begin{figure}
-			\begin{subfigure}{.6\textwidth}
-			\includegraphics[width=.8\linewidth]{old_edge.png}
+		\begin{subfigure}{.6\textwidth}
+			\includegraphics[width=.8\linewidth]{old_edge_left.png}
 			\caption{$b=1.7999$}
+		\end{subfigure}
+		\begin{subfigure}{.6\textwidth}
+			\includegraphics[width=.8\linewidth]{old_edge_right.png}
+			\caption{$b=1.8001$}
 		\end{subfigure}
 		\caption{График приближения длины границы протекающего кластера вблизи точки $b=9/5$}
 		\label{old_edge}
@@ -299,9 +303,7 @@
 		\label{power_law}
 	\end{equation}
 	
-	\par Замер был проведен слева и справа в от точки фазового перехода Рис. \ref{old_edge}. Слева коэффициенты закона принимаются следующие значения. Для $b=1.7999$ $A=0.3622(1)$,
-	$c=-10.1(1)$ и $\theta=	2.0124(3)$. Справа от точки перехода коэффициенты следующие
-	$b=1.8001$, $c= $ и $\theta= $.
+	\par Замер был проведен слева и справа в от точки фазового перехода Рис. \ref{old_edge}. Слева коэффициенты закона принимаются следующие значения. Для $b=1.7999$ $A=0.3622(1)$, $c=-10.1(1)$ и $\theta=	2.0124(3)$. Справа от точки перехода коэффициенты следующие при $b=1.8001$, $A=0.3280(1)$ $c=-5.1(1)$ и $\theta=2.00272(5) $. В термодинамическом пределе при стремлении размера системы к бесконечности степень роста границы интерфейса в соответствии с размерностью Минковского будет $\theta = 2$ \cite{me}, причем в обоих режимах (справа и слева от точки перехода).
 	
 	
 	\subsection{Простая модель со случайным полем}
@@ -414,19 +416,86 @@
 			\label{average}
 	\end{figure}
 	
-	\par В данной модели точке $b=9/5$ предыдущей модели соответствует $b=3/2$. Справа от нее растет единичный дефектор и 3х3 блок из кооператоров, а также отсутствуют протекающие кластеры кооператоров. Кроме того, приближение степенной функцией (\ref{power_law}) также дало степень аналогичную из предыдущей модели. Таким образом и в этой модели граница протекающего кластера растет квадратично из ростом размера системы. Слева коэффициенты закона принимаются следующие значения. Для $b=1.4999$ $A=0.2847(2)$,
+	\par В данной модели точке $b=9/5$ предыдущей модели соответствует $b=3/2$. Справа от нее растет единичный дефектор и 3х3 блок из кооператоров, а также отсутствуют протекающие кластеры кооператоров. Кроме того, приближение степенной функцией (\ref{power_law}) также дало степень аналогичную из предыдущей модели - Рис.\ref{new_edge} 
+	
+	\begin{figure}
+		\begin{subfigure}{.6\textwidth}
+			\includegraphics[width=.8\linewidth]{new_edge_left.png}
+			\caption{$b=1.4999$}
+		\end{subfigure}
+		\begin{subfigure}{.6\textwidth}
+			\includegraphics[width=.8\linewidth]{new_edge_right.png}
+			\caption{$b=1.5001$}
+		\end{subfigure}
+		\caption{График приближения длины границы протекающего кластера вблизи точки $b=3/2$}
+		\label{new_edge}
+	\end{figure}
+	
+	\par Таким образом и в этой модели граница протекающего кластера растет квадратично из ростом размера системы. Слева коэффициенты закона принимаются следующие значения. Для $b=1.4999$ $A=0.2847(2)$,
 	$c=30(1)$ и $\theta=2.025(1)$. Справа от точки перехода коэффициенты следующие
-	$b=1.5001$, $c= $ и $\theta= $.
+	$b=1.5001$, $A=0.34931(6)$, $c=-3.64(6) $ и $\theta=2.00271(3) $. В данной модели также в термодинамическом пределе $\theta = 2$\cite{me}.
 	
+	\par На Рис. \ref{average} можно заметить, что практически все точки, в которых происходит скачок средней плотности, совпадают в обеих моделях, но нельзя утверждать, что модели ведут себя одинаково в этих точках. В модели со средним полем есть точка перехода $b=1.66$, после которой кооператоры вымирают полностью, не совпадет с другой моделью. Аналогичной точкой в модели Р.Мэй и М.Новака является $b=3$
 	
+
 	\subsection{Модель с чужим средним полем}
 	
 	\par Рассмотрим модель из предыдущего пункта. В котором каждый агент играл со средним полем текущей решетки. Мы внесли некоторые изменение и в эту модель. Запускаются одновременно две игры соответствующие модели игры со средним полем(см. предыдущий пункт). Изменение заключается в том, что каждый агент среди его оппонентов, помимо восьмерых его соседей он должен сиграть со средним полем другой решетки, которая запускалась вместе с первой, а на другой решетке - соответственно со средним полем первой. Графики плотностей кооператоров находятся в Приложении 4. Количество раундов для релаксации системы, которые не учитываются в вычислениях указаны в таблице ниже.
 	
-	В Приложении 2 можно найти графики плотностей кооператоров на решетке от времени при различных значениях параметра $b$. Размер решетки 100х100. Всего количество раундов составляет 36000.
+	\begin{table}[H]
+		\centering
+		\begin{tabular}{|c|c|c|c|c|}
+			\hline 
+			$b$ & 1.35 & 1.45 & 1.55 & 1.65 \\ 
+			\hline 
+			1.35 & 25000 &  &  & \\ 
+			\hline 
+			1.45 & 5000 & 5000 &  &  \\
+			\hline 
+			1.55 & 5000 & 5000 & 5000 &  \\
+			\hline 
+			1.65 & 5000 & 5000 & 5000 & 5000   \\
+			\hline 
+			1.75 & 25000 & 5000 & 5000 & 5000  \\
+			\hline 
+		\end{tabular}
+		\caption{Таблица c количеством первых неучитываемых раундов игры $b$}
+		\label{dep_slice} 
+	\end{table}
 	
-	В Приложение 3 находится таблица значений величин изображенных на Рис. \ref{average}. На графике можно заметить, что практически все точки, в которых происходит скачек средней плотности совпадают в обеих моделях. Но в модели со случайным игроком есть точка перехода $b=1.66$, после которой кооператоры вымирают полностью, не совпадет с другой моделью. Аналогичной точкой в модели Р.Мэй и М.Новака является $b=3$
 	
+	В Приложении 2 можно найти графики плотностей кооператоров на решетке от времени при различных значениях параметра $b$. Размер решетки 100х100. Всего количество раундов составляет 20000.
+	
+	\begin{table}
+			\centering
+		\begin{tabular}{|c|c|c|c|c|c|c|}
+			\hline 
+			$b$ & 1.35 & 1.45 & 1.55 & 1.65 & 1.75 & OLD \\ 
+			\hline 
+			1.35 & 0.978(2) &  &  &  &  & 0.978(2) \\ 
+			& 0.978(2) &  &  &  &  &  \\ 
+			\hline 
+			1.45 & 0.78(1) & 0.66(1) &  &  &  & 0.66(1) \\
+			& 0.71(1) & 0.66(1) &  &  &  &  \\ 
+			\hline 
+			1.55 & 0.69(1) & 0.61(1) & 0.44(1) &  &  & 0.44(1) \\
+			& 0.26(3) & 0.35(2) & 0.44(1) &  &  &  \\  
+			\hline 
+			1.65 & 0.861(5) & 0.700(1) & 0.721(1) & 0.18(2)	 &  & 0.18(2)	 \\
+			& 0.00  & 0.00 & 0.00 & 0.18(2) &  &  \\  
+			\hline 
+			1.75 & 0.929(6) & 0.696(1) & 0.725(1) & 0.30(2)  & 0.00 & 0.00 \\
+			& 0.00 & 0.00 & 0.00 & 0.00 & 0.00 &  \\ 
+			\hline 
+			OLD & 0.978(2) & 0.66(1) & 0.44(1) & 0.18(2) & 0.00 &  \\ 
+			\hline 
+		\end{tabular}
+		\caption{Таблица средних плотностей кооператоров на решетках размером 100х100 при различных параметрах $b$}
+		\label{dep_freq} 
+	\end{table}
+	
+	\par В приложении 3 находятся снепшоты конфигураций модели при 3 вариантах параметра $b$. Значения параметра $b$ выбирались в соответствии с условием, что обе плотности отличны от нуля(см Таб.\ref{dep_freq}), иначе модель будет просто вариацией из п.5.1, только немного сдвинутой. Размер системы 100х100, отсечение первых 5000 раундов в соответствии с \ref{dep_slice}. Синие агенты - кооператоры, красные - дефекторы.
+		
 
  \begin{thebibliography}{99}
 	
@@ -487,6 +556,8 @@
 	
 	\bibitem{hausdorf}  M.  Shishikura, The  Hausdorff  dimension  of  the  boundary  of  the  Mandelbrot  set  and  Julia  sets,  Annals  of Mathematics 147, 225 (1998).
 	
+	\bibitem{me} Kolotev S. et al. Interfaces in evolutionary games //Journal of Physics: Conference Series. – IOP Publishing, 2018. – Т. 955. – №. 1. – С. 012023.
+	
 \end{thebibliography}
 
 	\section{Приложение 1}
@@ -535,6 +606,8 @@
 		\label{fig:28}
 		\end{subfigure}%
 	\end{figure}
+
+
 	\begin{figure}
 		\ContinuedFloat
 		\begin{subfigure}{.5\textwidth}
@@ -561,7 +634,112 @@
 		\end{subfigure}%
 	
 	\label{fig:2}
-	\caption{Графики}
-	\end{figure}	
+	\caption{Графики с плотностями кооператоров на решетке простой моделью со средним полем (синий график) и моделью Мэй и Новак(зеленый график)}
+	\end{figure}
+
+	\section{Приложение 2}
+\begin{figure}[H]
+	\begin{subfigure}{.5\textwidth}
+		\includegraphics[width=.8\linewidth]{135-135.png}
+		\caption{$b=1.35$}
+	\end{subfigure}
+	\begin{subfigure}{.5\textwidth}
+		\includegraphics[width=.8\linewidth]{135-145.png}
+		\caption{$b=1.35$ и $b=1.45$}
+	\end{subfigure}%
+	
+	\begin{subfigure}{.5\textwidth}
+		\includegraphics[width=.8\linewidth]{135-155.png}
+		\caption{$b=1.35$ и $b=1.55$}
+	\end{subfigure}
+	\begin{subfigure}{.5\textwidth}
+		\includegraphics[width=.8\linewidth]{135-165.png}
+		\caption{$b=1.35$ и $b=1.65$}
+	\end{subfigure}%
+	
+	\begin{subfigure}{.5\textwidth}
+		\includegraphics[width=.8\linewidth]{135-175.png}
+		\caption{$b=1.35$ и $b=1.75$}
+	\end{subfigure}
+	\begin{subfigure}{.5\textwidth}
+		\includegraphics[width=.8\linewidth]{145-145.png}
+		\caption{$b=1.45$}
+	\end{subfigure}%
+	
+	\begin{subfigure}{.5\textwidth}
+		\includegraphics[width=.8\linewidth]{145-155.png}
+		\caption{$b=1.45$ и $b=1.55$}
+	\end{subfigure}
+	\begin{subfigure}{.5\textwidth}
+		\includegraphics[width=.8\linewidth]{145-165.png}
+		\caption{$b=1.45$ и $b=1.65$}
+	\end{subfigure}%
+\end{figure}
+
+
+\begin{figure}
+	\ContinuedFloat
+	\begin{subfigure}{.5\textwidth}
+		\includegraphics[width=.8\linewidth]{145-175.png}
+		\caption{$b=1.45$ и $b=1.75$}
+	\end{subfigure}
+	\begin{subfigure}{.5\textwidth}
+		\includegraphics[width=.8\linewidth]{155-155.png}
+		\caption{$b=1.55$}
+	\end{subfigure}%
+	
+	
+	\begin{subfigure}{.5\textwidth}
+		\includegraphics[width=.8\linewidth]{155-165.png}
+		\caption{$b=1.55$ и $b=1.65$}
+	\end{subfigure}
+	\begin{subfigure}{.5\textwidth}
+		\includegraphics[width=.8\linewidth]{155-175.png}
+		\caption{$b=1.55$ и $b=1.75$}
+	\end{subfigure}%
+	
+	\begin{subfigure}{.5\textwidth}
+		\includegraphics[width=.8\linewidth]{165-165.png}
+		\caption{$b=1.65$}
+	\end{subfigure}
+	\begin{subfigure}{.5\textwidth}
+		\includegraphics[width=.8\linewidth]{165-175.png}
+		\caption{$b=1.65$ и $b=1.75$}
+	\end{subfigure}%
+	\caption{Графики плотностей кооператоров модели с чужим средним полем}
+\end{figure}
+
+\section{Приложение 3}
+\begin{figure}[H]
+	\begin{subfigure}{.5\textwidth}
+		\includegraphics[width=.8\linewidth]{1.35-1.45-1.png}
+		\caption{1.35}
+	\end{subfigure}
+	\begin{subfigure}{.5\textwidth}
+		\includegraphics[width=.8\linewidth]{1.35-1.45-2.png}
+		\caption{1.45}
+	\end{subfigure}%
+\end{figure}
+	\begin{figure}
+	\ContinuedFloat
+	\begin{subfigure}{.5\textwidth}
+		\includegraphics[width=.8\linewidth]{1.35-1.55-1.png}
+		\caption{1.35}
+	\end{subfigure}
+	\begin{subfigure}{.5\textwidth}
+		\includegraphics[width=.8\linewidth]{1.35-1.55-2.png}
+		\caption{1.55}
+	\end{subfigure}%
+	
+	\begin{subfigure}{.5\textwidth}
+		\includegraphics[width=.8\linewidth]{1.45-1.55-1.png}
+		\caption{1.45}
+	\end{subfigure}
+	\begin{subfigure}{.5\textwidth}
+		\includegraphics[width=.8\linewidth]{1.45-1.55-2.png}
+		\caption{1.55}
+	\end{subfigure}%
+	\caption{Снепшоты решеток модели с чужим средним полем}
+	\end{figure}		
 
 \end{document}
